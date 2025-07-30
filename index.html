@@ -1,84 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Tools Pro</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/compressorjs/1.2.1/compressor.min.js"></script>
-</head>
-<body>
-    <header>
-        <h1>Image Tools Pro</h1>
-        <p>Edit your images directly in your browser</p>
-    </header>
-
-    <div class="tool-selector">
-        <button class="tool-btn active" data-tool="resizer">Image Resizer</button>
-        <button class="tool-btn" data-tool="compressor">Compressor</button>
-        <button class="tool-btn" data-tool="converter">Converter</button>
+<!-- Batch Processor Tool -->
+<div id="batch-tool" class="tool-section">
+    <h2>Batch Processor (Up to 5 Images)</h2>
+    <input type="file" id="batch-input" accept="image/*" multiple>
+    <div class="batch-options">
+        <label>Output Format:
+            <select id="batch-format">
+                <option value="png">PNG</option>
+                <option value="jpeg">JPEG</option>
+                <option value="webp">WebP</option>
+            </select>
+        </label>
+        <label>Quality (0-1): <input type="number" id="batch-quality" min="0" max="1" step="0.1" value="0.8"></label>
     </div>
+    <button id="batch-process-btn">Process All</button>
+    <div class="batch-results" id="batch-results"></div>
+</div>
 
-    <div class="tool-container">
-        <!-- Resizer Tool -->
-        <div id="resizer-tool" class="tool-section active">
-            <h2>Image Resizer</h2>
-            <input type="file" id="resizer-input" accept="image/*">
-            <div class="options">
-                <label>Width: <input type="number" id="resize-width" placeholder="px"></label>
-                <label>Height: <input type="number" id="resize-height" placeholder="px"></label>
-                <label>Maintain Aspect Ratio: <input type="checkbox" id="maintain-ratio" checked></label>
-            </div>
-            <button id="resize-btn">Resize Image</button>
-            <div class="result">
-                <canvas id="resizer-canvas"></canvas>
-                <a id="resizer-download" class="download-btn" download="resized-image.png">Download</a>
-            </div>
-        </div>
-
-        <!-- Compressor Tool -->
-        <div id="compressor-tool" class="tool-section">
-            <h2>Image Compressor</h2>
-            <input type="file" id="compressor-input" accept="image/*">
-            <div class="options">
-                <label>Quality (0-1): <input type="number" id="compression-quality" min="0" max="1" step="0.1" value="0.8"></label>
-                <label>Max Width: <input type="number" id="compression-width" placeholder="px"></label>
-                <label>Max Height: <input type="number" id="compression-height" placeholder="px"></label>
-            </div>
-            <button id="compress-btn">Compress Image</button>
-            <div class="result">
-                <canvas id="compressor-canvas"></canvas>
-                <div class="file-info">
-                    <p>Original size: <span id="original-size">0 KB</span></p>
-                    <p>Compressed size: <span id="compressed-size">0 KB</span></p>
-                    <p>Reduction: <span id="reduction-percent">0%</span></p>
-                </div>
-                <a id="compressor-download" class="download-btn" download="compressed-image.jpg">Download</a>
-            </div>
-        </div>
-
-        <!-- Converter Tool -->
-        <div id="converter-tool" class="tool-section">
-            <h2>Image Converter</h2>
-            <input type="file" id="converter-input" accept="image/*">
-            <div class="options">
-                <label>Convert to: 
-                    <select id="output-format">
-                        <option value="png">PNG</option>
-                        <option value="jpeg">JPEG</option>
-                        <option value="webp">WebP</option>
-                    </select>
-                </label>
-                <label>Quality (for JPEG/WebP): <input type="number" id="conversion-quality" min="0" max="1" step="0.1" value="0.9"></label>
-            </div>
-            <button id="convert-btn">Convert Image</button>
-            <div class="result">
-                <canvas id="converter-canvas"></canvas>
-                <a id="converter-download" class="download-btn">Download</a>
-            </div>
-        </div>
+<!-- Advanced Filters Tool -->
+<div id="filters-tool" class="tool-section">
+    <h2>Advanced Filters</h2>
+    <input type="file" id="filters-input" accept="image/*">
+    <div class="filter-controls">
+        <label>Brightness: <input type="range" id="brightness" min="-100" max="100" value="0"></label>
+        <label>Contrast: <input type="range" id="contrast" min="-100" max="100" value="0"></label>
+        <label>Saturation: <input type="range" id="saturation" min="-100" max="100" value="0"></label>
+        <label>Sharpness: <input type="range" id="sharpness" min="0" max="100" value="0"></label>
+        <label>Enhance Quality: <input type="checkbox" id="enhance-toggle"></label>
     </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
+    <button id="apply-filters-btn">Apply Filters</button>
+    <div class="result">
+        <canvas id="filters-canvas"></canvas>
+        <a id="filters-download" class="download-btn">Download</a>
+    </div>
+</div>
